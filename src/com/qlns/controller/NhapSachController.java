@@ -116,7 +116,7 @@ public class NhapSachController {
         btnAdd.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+                               
                 if (jtfMaSach.getText().length() == 0) {
                     jlbMsg.setText("Vui lòng nhập dữ liệu bắt buộc!");
                 } else {
@@ -193,6 +193,10 @@ public class NhapSachController {
                 }
             }
         });
+    }
+    
+    public void setComboBox(){
+        
     }
 }
     
