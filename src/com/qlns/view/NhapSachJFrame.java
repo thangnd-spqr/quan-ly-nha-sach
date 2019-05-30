@@ -93,7 +93,6 @@ public class NhapSachJFrame extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hành động", "Huyền ảo", "Kinh dị", "Tâm lý" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -101,7 +100,7 @@ public class NhapSachJFrame extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel6.setText("Thể loại");
+        jLabel6.setText("Tên Đầu Sách");
 
         btnAdd.setBackground(new java.awt.Color(51, 204, 0));
         btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N

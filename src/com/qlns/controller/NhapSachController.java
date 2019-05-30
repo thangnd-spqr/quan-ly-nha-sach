@@ -21,7 +21,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -43,6 +46,7 @@ public class NhapSachController {
     private JTextField jtfMaPhieuNhap;
     private javax.swing.JTextField jtfSoLuong;
     private JLabel jlbMsg;
+    private JComboBox jcbTenDauSach;
     
     private CTPhieuNhap ctpn = null;
     
@@ -196,6 +200,22 @@ public class NhapSachController {
     }
     
     public void setComboBox(){
+        ArrayList<Integer> maDauSach = new ArrayList<Integer>();
+        ArrayList<String> tenDauSach = new ArrayList<String>();
+        ArrayList<String> theLoai = new ArrayList<String>();
+        try {
+            Connection cons = DBConnect.getConnection();
+            String sql = "SELECT * FROM book_store.dau_sach";
+            PreparedStatement ps = cons.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                maDauSach.add(rs.getInt("ma_dau_sach"));
+                tenDauSach.add(rs.getString("ten_dau_sach"));
+                theLoai.add(rs.getString("the_loai"));  
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         
     }
 }
