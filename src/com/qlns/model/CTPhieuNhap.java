@@ -11,11 +11,33 @@ package com.qlns.model;
  */
 public class CTPhieuNhap {
     
+    private int maCTPhieuNhap;
     private int maPhieuNhap;
     private int maSach;
     private int soLuongNhap;
     private long donGiaNhap;
 
+    public CTPhieuNhap() {
+    }
+    
+    public CTPhieuNhap(int maCTPhieuNhap, int maPhieuNhap, int maSach, int soLuongNhap, long donGiaNhap) {
+        this.maCTPhieuNhap = maCTPhieuNhap;
+        this.maPhieuNhap = maPhieuNhap;
+        this.maSach = maSach;
+        this.soLuongNhap = soLuongNhap;
+        this.donGiaNhap = donGiaNhap;
+    }
+
+    
+    public int getMaCTPhieuNhap() {
+        return maCTPhieuNhap;
+    }
+
+    public void setMaCTPhieuNhap(int maCTPhieuNhap) {
+        this.maCTPhieuNhap = maCTPhieuNhap;
+    }
+
+    
     public int getMaPhieuNhap() {
         return maPhieuNhap;
     }

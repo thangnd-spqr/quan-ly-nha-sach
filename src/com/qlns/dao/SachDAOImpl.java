@@ -29,12 +29,12 @@ public class SachDAOImpl implements SachDAO{
             PreparedStatement ps = cons.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                Sach sach = new Sach();
-                sach.setMa_sach(rs.getInt("ma_sach"));
-                sach.setTen_sach(rs.getString("ten_sach"));
-                sach.setTen_tg(rs.getString("ten_tg"));
-                sach.setSo_luong(rs.getInt("so_luong"));
-                list.add(sach);
+//                Sach sach = new Sach();
+//                sach.setMa_sach(rs.getInt("ma_sach"));
+//                sach.setTen_sach(rs.getString("ten_sach"));
+//                sach.setTen_tg(rs.getString("ten_tg"));
+//                sach.setSo_luong(rs.getInt("so_luong"));
+//                list.add(sach);
             }
             ps.close();
             rs.close();
@@ -55,10 +55,7 @@ public class SachDAOImpl implements SachDAO{
                     + "so_luong = VALUES(so_luong);";
             PreparedStatement ps = cons.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, sach.getMa_sach());
-            ps.setString(2, sach.getTen_sach());
-            ps.setString(3, sach.getTen_tg());
-            ps.setInt(4, sach.getSo_luong());
-            
+
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             int generatedKey = 0;

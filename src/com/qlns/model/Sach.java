@@ -15,9 +15,22 @@ import java.sql.Date;
 public class Sach implements Serializable{
     
     private int maSach;
-    private String tenSach;
-    private String tenTG;
-    private int soLuong;
+    private int maDauSach;
+    private String nxb;
+    private String namXb;
+    private int soLuongTon;
+
+    public Sach(){
+        
+    }
+    
+    public Sach(int maSach, int maDauSach, String nxb, String namXb, int soLuongTon) {
+        this.maSach = maSach;
+        this.maDauSach = maDauSach;
+        this.nxb = nxb;
+        this.namXb = namXb;
+        this.soLuongTon = soLuongTon;
+    }
 
     public int getMa_sach() {
         return maSach;
@@ -27,36 +40,46 @@ public class Sach implements Serializable{
         this.maSach = ma_sach;
     }
 
+    public int getMaDauSach() {
+        return maDauSach;
+    }
+
+    public void setMaDauSach(int maDauSach) {
+        this.maDauSach = maDauSach;
+    }
+
+    public String getNxb() {
+        return nxb;
+    }
+
+    public void setNxb(String nxb) {
+        this.nxb = nxb;
+    }
+
+    public String getNamXb() {
+        return namXb;
+    }
+
+    public void setNamXb(String namXb) {
+        this.namXb = namXb;
+    }
+
+    public int getSoLuongTon() {
+        return soLuongTon;
+    }
+
+    public void setSoLuongTon(int soLuongTon) {
+        this.soLuongTon = soLuongTon;
+    }
+
     
-    public String getTen_sach() {
-        return tenSach;
-    }
-
-    public void setTen_sach(String ten_sach) {
-        this.tenSach = ten_sach;
-    }
-
-    public String getTen_tg() {
-        return tenTG;
-    }
-
-    public void setTen_tg(String ten_tg) {
-        this.tenTG = ten_tg;
-    }
-
-    public int getSo_luong() {
-        return soLuong;
-    }
-
-    public void setSo_luong(int so_luong) {
-        this.soLuong = so_luong;
-    }
+    
 
     
     
     @Override
     public String toString() {
-        return "Sach{" + "maSach=" + maSach + ", tenSach=" + tenSach + '}';
+        return "Sach{" + "maSach=" + maSach  ;
     }
 
     

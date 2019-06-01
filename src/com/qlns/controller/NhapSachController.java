@@ -7,22 +7,28 @@ package com.qlns.controller;
 
 import com.qlns.dao.DBConnect;
 import com.qlns.model.CTPhieuNhap;
+import com.qlns.model.PhieuNhap;
+import com.qlns.model.Sach;
 import com.qlns.service.SachService;
 import com.qlns.service.SachServiceImpl;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -41,14 +47,18 @@ public class NhapSachController {
     private JButton btnAdd;
     private JButton btnSubmit;
     private JPanel jpnView;
-    private javax.swing.JTextField jtfDonGiaNhap;
-    private javax.swing.JTextField jtfMaSach;
+    private JTextField jtfNgayNhap;
+    private JTextField jtfMaCTPhieuNhap;
     private JTextField jtfMaPhieuNhap;
+    private javax.swing.JTextField jtfMaSach;
     private javax.swing.JTextField jtfSoLuong;
-    private JLabel jlbMsg;
+    private javax.swing.JTextField jtfDonGiaNhap;
     private JComboBox jcbTenDauSach;
+    private JLabel jlbMsg;
+
     
     private CTPhieuNhap ctpn = null;
+    private PhieuNhap phieuNhap = null;
     
     private SachService sachService = null;
     
@@ -87,15 +97,21 @@ public class NhapSachController {
         return index;
     }
 
-    public NhapSachController(JButton btnAdd,JButton btnSubmit,JPanel jpnView, JTextField jtfMaSach,JTextField jtfMaPhieuNhap,
-             JTextField jtfSoLuong,JTextField jtfDonGiaNhap,JLabel jlbMsg) {
+    public NhapSachController() {
+    }
+    
+    public NhapSachController(JButton btnAdd,JButton btnSubmit,JPanel jpnView,JTextField jtfNgayNhap,JTextField jtfMaCTPhieuNhap , JTextField jtfMaSach,JTextField jtfMaPhieuNhap,
+             JTextField jtfSoLuong,JTextField jtfDonGiaNhap,JComboBox jcbTenDauSach,JLabel jlbMsg) {
         this.btnAdd = btnAdd;
         this.btnSubmit = btnSubmit;
         this.jpnView = jpnView;
+        this.jtfNgayNhap = jtfNgayNhap;
+        this.jtfMaCTPhieuNhap = jtfMaCTPhieuNhap;
         this.jtfMaSach = jtfMaSach;
         this.jtfMaPhieuNhap = jtfMaPhieuNhap;
         this.jtfSoLuong = jtfSoLuong;
         this.jtfDonGiaNhap = jtfDonGiaNhap;
+        this.jcbTenDauSach = jcbTenDauSach;
         this.jlbMsg = jlbMsg;
         
         this.sachService = new SachServiceImpl();
@@ -109,10 +125,36 @@ public class NhapSachController {
     }
     
     public void setEvent() {
+        // Thêm vào JComboBox tên đầu sách.
+        Sach sach ;
+        ArrayList<Integer> maDauSach = new ArrayList<Integer>();
+        ArrayList<String> tenDauSach = new ArrayList<String>();
+        ArrayList<String> theLoai = new ArrayList<String>();
+        try {
+            Connection cons = DBConnect.getConnection();
+            String sql = "SELECT * FROM book_store.dau_sach";
+            PreparedStatement ps = cons.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                maDauSach.add(rs.getInt("ma_dau_sach"));
+                tenDauSach.add(rs.getString("ten_dau_sach"));
+                theLoai.add(rs.getString("ten_the_loai"));  
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
+        for(int i = 0; i<tenDauSach.size(); i++) {
+            dcbm.addElement(tenDauSach.get(i));
+        }
+        jcbTenDauSach.setModel(dcbm);
+        
         
         DefaultTableModel dtm = new DefaultTableModel();
-        String[] list = {"Mã Phiếu Nhập","Mã Sách","Số Lượng","Đơn giá Nhập"};
+        String[] list = {"Mã Phiếu Nhập","Mã Sách","Tên Sách","Số Lượng","Đơn giá Nhập"};
         dtm.setColumnIdentifiers(list);
+        
+        
         JTable table = new JTable(dtm);
         Object[] objs = new Object[list.length];
         listCTPN = new ArrayList<>(); 
@@ -125,9 +167,10 @@ public class NhapSachController {
                     jlbMsg.setText("Vui lòng nhập dữ liệu bắt buộc!");
                 } else {
                     ctpn = new CTPhieuNhap();
+                    
                     System.out.println("Button clicked");
                     int n = (Integer.parseInt(jtfMaSach.getText()));
-                    System.out.println(n);
+                    ctpn.setMaCTPhieuNhap(Integer.parseInt(jtfMaCTPhieuNhap.getText()));
                     ctpn.setMaSach(n);                   
                     ctpn.setMaPhieuNhap(Integer.parseInt(jtfMaPhieuNhap.getText()));
                     ctpn.setSoLuongNhap(Integer.parseInt(jtfSoLuong.getText()));
@@ -135,23 +178,13 @@ public class NhapSachController {
                     if( checkIfMaSachExist(table, n) == -1) {
                         objs[0] = ctpn.getMaPhieuNhap();
                         objs[1] = ctpn.getMaSach();
+                        objs[2] = jcbTenDauSach.getSelectedItem();
                         objs[2] = ctpn.getSoLuongNhap();
                         objs[3] = ctpn.getDonGiaNhap();
                         dtm.addRow(objs);
                         listCTPN.add(ctpn);
                     } else {
-//                        int index = checkIfMaSachExist(table, n);
-//                        
-//                        System.out.println("Last index: "+ index);
-//                        
-//                        int previousValue = Integer.valueOf((String)table.getValueAt(n, 2)) ; //Lấy số lượng tại vị trí mã mách tồn tại
-//                        
-//                        int userValue = Integer.valueOf(jtfSoLuong.getText());
-//                        
-//                        int updateValue = previousValue + userValue;
-//                        
-//                        table.setValueAt(updateValue, n, 2 );
-                        
+                     
                         jlbMsg.setText("Dữ liệu bị trùng");
                     }
                     
@@ -189,9 +222,9 @@ public class NhapSachController {
         jpnView.repaint();
         
         btnSubmit.addMouseListener(new MouseAdapter() {
-            
             @Override
             public void mouseClicked(MouseEvent e){
+                phieuNhap = new PhieuNhap();
                 for(int i = 0; i< listCTPN.size(); i++) {
                     System.out.println(listCTPN.get(i).toString());
                 }
@@ -199,24 +232,10 @@ public class NhapSachController {
         });
     }
     
-    public void setComboBox(){
-        ArrayList<Integer> maDauSach = new ArrayList<Integer>();
-        ArrayList<String> tenDauSach = new ArrayList<String>();
-        ArrayList<String> theLoai = new ArrayList<String>();
-        try {
-            Connection cons = DBConnect.getConnection();
-            String sql = "SELECT * FROM book_store.dau_sach";
-            PreparedStatement ps = cons.prepareCall(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                maDauSach.add(rs.getInt("ma_dau_sach"));
-                tenDauSach.add(rs.getString("ten_dau_sach"));
-                theLoai.add(rs.getString("the_loai"));  
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        
+    public static Date getDate(){
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	Date date = new Date();
+	return date;
     }
 }
     

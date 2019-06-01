@@ -4,16 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/dao/DBConnect.java</file>
-            <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/dao/PhieuNhapDAO.java</file>
             <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/view/MainJFrame.java</file>
-            <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/model/TheLoai.java</file>
             <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/view/NhapSachJFrame.java</file>
-            <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/main/Main.java</file>
-            <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/model/CTPhieuNhap.java</file>
             <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/controller/NhapSachController.java</file>
             <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/utility/ClassTableModel.java</file>
-            <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/bean/DanhMucBean.java</file>
-            <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/model/PhieuNhap.java</file>
             <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/dao/CTPhieuNhapDAO.java</file>
             <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/service/SachService.java</file>
             <file>file:/C:/Users/Thang/OneDrive/Documents/NetBeansProjects/quan-ly-nha-sach/src/com/qlns/dao/SachDAO.java</file>

@@ -32,9 +32,9 @@ public class ClassTableModel {
                 obj = new Object[column];
                 obj[0] = sach.getMa_sach();
                 obj[1] = (i+1);
-                obj[2] = sach.getTen_sach();
-                obj[3] = sach.getTen_tg();
-                obj[4] = sach.getSo_luong();
+//                obj[2] = sach.getTen_sach();
+//                obj[3] = sach.getTen_tg();
+//                obj[4] = sach.getSo_luong();
                 dtm.addRow(obj);
                 
             }

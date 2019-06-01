@@ -20,7 +20,7 @@ public class NhapSachPanel extends javax.swing.JPanel {
         initComponents();
         
         QuanLySachController quanLySachController = new QuanLySachController(jpnView, btnAdd, jtfSearch);
-        quanLySachController.setDateToTable();
+        //quanLySachController.setDateToTable();
         quanLySachController.setEvent();
     }
 

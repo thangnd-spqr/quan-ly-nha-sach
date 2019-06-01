@@ -104,17 +104,17 @@ public class QuanLySachController {
                     int selectedRowIndex = table.getSelectedRow();
                     selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
                     
-                    Sach sach = new Sach();
-                    sach.setMa_sach((int) model.getValueAt(selectedRowIndex, 0));
-                    sach.setTen_sach(model.getValueAt(selectedRowIndex, 2).toString());
-                    sach.setTen_tg(model.getValueAt(selectedRowIndex, 3).toString());
-                    sach.setSo_luong((int)model.getValueAt(selectedRowIndex, 4));
+//                    Sach sach = new Sach();
+//                    sach.setMa_sach((int) model.getValueAt(selectedRowIndex, 0));
+//                    sach.setTen_sach(model.getValueAt(selectedRowIndex, 2).toString());
+//                    sach.setTen_tg(model.getValueAt(selectedRowIndex, 3).toString());
+//                    sach.setSo_luong((int)model.getValueAt(selectedRowIndex, 4));
                                        
-                    NhapSachJFrame frame = new NhapSachJFrame(sach);
-                    frame.setTitle("Thông tin học viên");
-                    frame.setResizable(false);
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
+//                    NhapSachJFrame frame = new NhapSachJFrame(sach);
+//                    frame.setTitle("Thông tin học viên");
+//                    frame.setResizable(false);
+//                    frame.setLocationRelativeTo(null);
+//                    frame.setVisible(true);
                     
                     System.out.println("Button clicked");
                 }
