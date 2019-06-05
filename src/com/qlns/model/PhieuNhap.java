@@ -39,6 +39,11 @@ public class PhieuNhap {
     public void setNgayNhap(Date ngayNhap) {
         this.ngayNhap = ngayNhap;
     }
+
+    @Override
+    public String toString() {
+        return "PhieuNhap{" + "maPhieuNhap=" + maPhieuNhap + ", ngayNhap=" + ngayNhap + '}';
+    }
     
     
 }

@@ -5,7 +5,8 @@
  */
 package com.qlns.utility;
 
-import com.qlns.model.Sach;
+import com.qlns.model.CTPhieuNhap;
+import com.qlns.model.PhieuNhap;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ClassTableModel {
     
-    public DefaultTableModel setTableSach(List<Sach> listItem,String [] listColumn) {
+    public DefaultTableModel setTablePhieuNhap(List<PhieuNhap> listItem,String [] listColumn) {
         DefaultTableModel dtm = new DefaultTableModel() {
          
             public boolean isCellEditable(int row, int column){
@@ -28,17 +29,42 @@ public class ClassTableModel {
         int rows =listItem.size();
         if (rows > 0) {
             for (int  i= 0 ; i<rows ; i++){
-                Sach sach = listItem.get(i);
+                PhieuNhap phieuNhap = listItem.get(i);
                 obj = new Object[column];
-                obj[0] = sach.getMa_sach();
-                obj[1] = (i+1);
-//                obj[2] = sach.getTen_sach();
-//                obj[3] = sach.getTen_tg();
-//                obj[4] = sach.getSo_luong();
+                obj[0] = phieuNhap.getMaPhieuNhap();
+                obj[1] = phieuNhap.getNgayNhap();
                 dtm.addRow(obj);
+                phieuNhap.toString();
                 
             }
         }
+        
+        return dtm;
+    }
+    
+    public DefaultTableModel setTableCTPhieuNhap(List<CTPhieuNhap> listItem,String [] listColumn) {
+        DefaultTableModel dtm = new DefaultTableModel() {
+         
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        dtm.setColumnIdentifiers(listColumn);
+        int column = listColumn.length;
+        Object[] obj = null;
+        int rows =listItem.size();
+        if (rows > 0) {
+            for (int  i= 0 ; i<rows ; i++){
+                CTPhieuNhap cTPhieuNhap = listItem.get(i);
+                obj = new Object[column];
+                obj[0] = cTPhieuNhap.getMaPhieuNhap();
+                obj[1] = cTPhieuNhap.getMaSach();
+                obj[2] = cTPhieuNhap.getSoLuongNhap();
+                obj[3] = cTPhieuNhap.getDonGiaNhap();
+                dtm.addRow(obj);                
+            }
+        }
+        
         return dtm;
     }
     

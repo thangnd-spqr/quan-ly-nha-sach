@@ -5,7 +5,7 @@
  */
 package com.qlns.view;
 
-import com.qlns.controller.QuanLySachController;
+import com.qlns.controller.QuanLyPhieuNhapController;
 
 /**
  *
@@ -19,8 +19,8 @@ public class NhapSachPanel extends javax.swing.JPanel {
     public NhapSachPanel() {
         initComponents();
         
-        QuanLySachController quanLySachController = new QuanLySachController(jpnView, btnAdd, jtfSearch);
-        //quanLySachController.setDateToTable();
+        QuanLyPhieuNhapController quanLySachController = new QuanLyPhieuNhapController(jpnView, btnAdd, jtfSearch);
+        quanLySachController.setDataToTable();
         quanLySachController.setEvent();
     }
 

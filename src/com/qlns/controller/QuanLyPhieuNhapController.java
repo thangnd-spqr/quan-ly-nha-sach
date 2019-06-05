@@ -5,10 +5,15 @@
  */
 package com.qlns.controller;
 
+import com.qlns.dao.CTPhieuNhapDAO;
+import com.qlns.dao.PhieuNhapDAO;
+import com.qlns.model.CTPhieuNhap;
+import com.qlns.model.PhieuNhap;
 import com.qlns.model.Sach;
 import com.qlns.service.SachService;
 import com.qlns.service.SachServiceImpl;
 import com.qlns.utility.ClassTableModel;
+import com.qlns.view.CTPhieuNhapJFrame;
 import com.qlns.view.NhapSachJFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,6 +21,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -33,29 +39,35 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Thang
  */
-public class QuanLySachController {
+public class QuanLyPhieuNhapController {
     private JPanel jpnView;
     private JButton add;
     private JTextField jtfSearch;
     
-    private SachService sachService = null;
+    private PhieuNhapDAO phieuNhapDAO = null;
+    
+    private CTPhieuNhapDAO cTPhieuNhapDAO = null;
     
     private TableRowSorter<TableModel> rowSorter = null;
     
-    private String[] listColumn = {"Mã sách","STT", "Tên Sách", "Tên Tác Giả","Số Lượng","Đơn giá nhập"};
+    private String[] listColumn = {"Mã Phiếu Nhập", "Ngày Nhập"};
 
-    public QuanLySachController(JPanel jpnView, JButton add, JTextField jtfSearch) {
+    public QuanLyPhieuNhapController(JPanel jpnView, JButton add, JTextField jtfSearch) {
         this.jpnView = jpnView;
         this.add = add;
         this.jtfSearch = jtfSearch;
         
-        this.sachService = new SachServiceImpl();
+        this.phieuNhapDAO = new PhieuNhapDAO();
     }
     
-    public void setDateToTable(){
-        List<Sach> listItem = sachService.getList();
+    public void setDataToTable(){
+        List<PhieuNhap> listItem = phieuNhapDAO.getList();
         
-        DefaultTableModel model = new ClassTableModel().setTableSach(listItem, listColumn);
+        for (int i = 0; i < listItem.size(); i++) {
+            System.out.println(listItem.get(i).toString());
+        }
+        
+        DefaultTableModel model = new ClassTableModel().setTablePhieuNhap(listItem, listColumn);
         JTable table = new JTable(model);
         
         rowSorter = new TableRowSorter<>(table.getModel());
@@ -88,33 +100,28 @@ public class QuanLySachController {
             }
         });
         
-        table.getColumnModel().getColumn(0).setMinWidth(0);
-        table.getColumnModel().getColumn(0).setMaxWidth(0);
-        table.getColumnModel().getColumn(0).setPreferredWidth(0);
-        
-        table.getColumnModel().getColumn(1).setMinWidth(20);
-        table.getColumnModel().getColumn(1).setMaxWidth(80);
-        table.getColumnModel().getColumn(1).setPreferredWidth(40);
         
         table.addMouseListener(new MouseAdapter() {
             
             public  void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    
+                    cTPhieuNhapDAO = new CTPhieuNhapDAO();
+                    List<CTPhieuNhap> listCTPN = new ArrayList<CTPhieuNhap>();
                     DefaultTableModel model = (DefaultTableModel) table.getModel();
                     int selectedRowIndex = table.getSelectedRow();
+                    int id ;
                     selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
                     
-//                    Sach sach = new Sach();
-//                    sach.setMa_sach((int) model.getValueAt(selectedRowIndex, 0));
-//                    sach.setTen_sach(model.getValueAt(selectedRowIndex, 2).toString());
-//                    sach.setTen_tg(model.getValueAt(selectedRowIndex, 3).toString());
-//                    sach.setSo_luong((int)model.getValueAt(selectedRowIndex, 4));
-                                       
-//                    NhapSachJFrame frame = new NhapSachJFrame(sach);
-//                    frame.setTitle("Thông tin học viên");
-//                    frame.setResizable(false);
-//                    frame.setLocationRelativeTo(null);
-//                    frame.setVisible(true);
+                    id = ((int) model.getValueAt(selectedRowIndex, 0));
+                    
+                    listCTPN = cTPhieuNhapDAO.getList(id);
+                    
+                    CTPhieuNhapJFrame frame = new CTPhieuNhapJFrame(listCTPN);
+                    frame.setTitle("Thông tin học viên");
+                    frame.setResizable(false);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
                     
                     System.out.println("Button clicked");
                 }
@@ -136,6 +143,7 @@ public class QuanLySachController {
         jpnView.add(scroll);
         jpnView.validate();
         jpnView.repaint();
+        
         
     }
     

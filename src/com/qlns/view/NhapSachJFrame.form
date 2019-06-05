@@ -330,7 +330,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jtfNgayNhap">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd/MM/yyyy&quot;);&#xa;jtfNgayNhap.setText(dateFormat.format(new NhapSachController().getDate()));"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="DateFormat dateFormat = new SimpleDateFormat(&quot;dd/MM/yyyy&quot;);&#xa;jtfNgayNhap.setText(dateFormat.format(new com.qlns.controller.PhieuNhapController().getDate()));"/>
           </AuxValues>
         </Component>
       </SubComponents>

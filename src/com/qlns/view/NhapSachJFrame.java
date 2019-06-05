@@ -5,8 +5,7 @@
  */
 package com.qlns.view;
 
-import com.qlns.controller.QuanLySachController;
-import com.qlns.controller.NhapSachController;
+import com.qlns.controller.PhieuNhapController;
 import com.qlns.model.Sach;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,8 +24,8 @@ public class NhapSachJFrame extends javax.swing.JFrame {
     public NhapSachJFrame(Sach sach) {
         initComponents();
         
-        NhapSachController controller = new NhapSachController(btnAdd,btnSubmit,jpnView,jtfNgayNhap, jtfMaSach ,jtfMaPhieuNhap
-                ,jtfSoLuong, jtfDonGiaNhap,jcbTenDauSach, jlbMsg);
+        PhieuNhapController controller = new PhieuNhapController(btnAdd,btnSubmit,jpnView,jtfNgayNhap,jtfMaCTPhieuNhap ,jtfMaSach ,jtfMaPhieuNhap
+                ,jtfSoLuong, jtfDonGiaNhap,jcbTenDauSach, jlbMsg,jopThongBao);
         //controller.setView(sach);
         controller.setEvent();
     }
@@ -257,7 +256,7 @@ public class NhapSachJFrame extends javax.swing.JFrame {
         );
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        jtfNgayNhap.setText(dateFormat.format(new NhapSachController().getDate()));
+        jtfNgayNhap.setText(dateFormat.format(new PhieuNhapController().getDate()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
