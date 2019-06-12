@@ -6,7 +6,7 @@
 package com.qlns.service;
 
 import com.qlns.dao.SachDAO;
-import com.qlns.dao.SachDAOImpl;
+import com.qlns.dao.SachDAO;
 import com.qlns.model.Sach;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class SachServiceImpl implements SachService{
     private SachDAO sachDAO = null;
     
     public SachServiceImpl() {
-        sachDAO = new SachDAOImpl();
+        sachDAO = new SachDAO();
     }
     
     @Override

@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -74,5 +74,22 @@ public class CTPhieuNhapDAO {
         }
         
         return listCTPN;
+    }
+    
+    public int deleteData( int id) {
+        int rowCount = 0; // khởi tạo biến đếm số dòng trong database đã update, create
+        Connection cons = DBConnect.getConnection();
+        PreparedStatement ps = null;
+        String sql = "DELETE FROM book_store.ct_pn WHERE ma_ctpn = '"+ id +"';";
+        try {
+            ps = cons.prepareStatement(sql);
+            rowCount = ps.executeUpdate();
+            ps.close();
+            cons.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowCount;
     }
 }

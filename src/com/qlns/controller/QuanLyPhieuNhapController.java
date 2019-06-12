@@ -62,11 +62,7 @@ public class QuanLyPhieuNhapController {
     
     public void setDataToTable(){
         List<PhieuNhap> listItem = phieuNhapDAO.getList();
-        
-        for (int i = 0; i < listItem.size(); i++) {
-            System.out.println(listItem.get(i).toString());
-        }
-        
+          
         DefaultTableModel model = new ClassTableModel().setTablePhieuNhap(listItem, listColumn);
         JTable table = new JTable(model);
         
@@ -81,7 +77,7 @@ public class QuanLyPhieuNhapController {
                 if(text.trim().length() == 0) {
                     rowSorter.setRowFilter(null);
                 } else {
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                    rowSorter.setRowFilter(RowFilter.regexFilter(text,0));
                 }
             }
 
@@ -118,7 +114,7 @@ public class QuanLyPhieuNhapController {
                     listCTPN = cTPhieuNhapDAO.getList(id);
                     
                     CTPhieuNhapJFrame frame = new CTPhieuNhapJFrame(listCTPN);
-                    frame.setTitle("Thông tin học viên");
+                    frame.setTitle("Thông tin phiếu nhập");
                     frame.setResizable(false);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);

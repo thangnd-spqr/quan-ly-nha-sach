@@ -43,15 +43,20 @@ public class NhapSachJFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jtfMaSach = new javax.swing.JTextField();
-        jtfSoLuong = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jtfDonGiaNhap = new javax.swing.JTextField();
         jcbTenDauSach = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         jlbMaCTPN = new javax.swing.JLabel();
-        jtfMaCTPhieuNhap = new javax.swing.JTextField();
+        String patternCTPhieuNhap = "3####";
+        String patternMaSach = "1####";
+        String patternSoLuong = "####";
+        String patternDonGia = "#######";
+        jtfMaCTPhieuNhap = new javax.swing.JFormattedTextField(com.qlns.utility.CustomFormatter.createFormatter(patternCTPhieuNhap));
+        jtfMaSach = new javax.swing.JFormattedTextField(com.qlns.utility.CustomFormatter.createFormatter(patternMaSach));
+        jtfSoLuong = new javax.swing.JFormattedTextField(com.qlns.utility.CustomFormatter.createFormatter(patternSoLuong));
+        jtfDonGiaNhap = new javax.swing.JFormattedTextField(com.qlns.utility.CustomFormatter.createFormatter(patternDonGia)
+        );
         jlbMsg = new javax.swing.JLabel();
         jpnView = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -65,7 +70,7 @@ public class NhapSachJFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Phiếu Nhập Sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 13))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chi tiết phiếu nhập", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -75,27 +80,9 @@ public class NhapSachJFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Số Lượng: ");
 
-        jtfMaSach.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfMaSachActionPerformed(evt);
-            }
-        });
-
-        jtfSoLuong.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfSoLuongActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Đơn Giá Nhập: ");
-
-        jtfDonGiaNhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDonGiaNhapActionPerformed(evt);
-            }
-        });
 
         jcbTenDauSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,11 +106,9 @@ public class NhapSachJFrame extends javax.swing.JFrame {
         jlbMaCTPN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlbMaCTPN.setText("Mã CT Phiếu Nhập");
 
-        jtfMaCTPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfMaCTPhieuNhapActionPerformed(evt);
-            }
-        });
+        jtfSoLuong.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+
+        jtfDonGiaNhap.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -136,23 +121,21 @@ public class NhapSachJFrame extends javax.swing.JFrame {
                     .addComponent(jlbMaCTPN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jtfSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfDonGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jtfMaCTPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jtfSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                    .addComponent(jtfMaCTPhieuNhap))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtfMaSach, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(jtfDonGiaNhap))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jcbTenDauSach, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,16 +146,16 @@ public class NhapSachJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbMaCTPN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfMaCTPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbTenDauSach, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfMaCTPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfDonGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,7 +210,7 @@ public class NhapSachJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfNgayNhap)
+                .addComponent(jtfNgayNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -256,7 +239,7 @@ public class NhapSachJFrame extends javax.swing.JFrame {
         );
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        jtfNgayNhap.setText(dateFormat.format(new PhieuNhapController().getDate()));
+        jtfNgayNhap.setText(dateFormat.format(new com.qlns.controller.PhieuNhapController().getDate()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -272,10 +255,6 @@ public class NhapSachJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfMaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMaSachActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfMaSachActionPerformed
-
     private void jcbTenDauSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTenDauSachActionPerformed
       
     }//GEN-LAST:event_jcbTenDauSachActionPerformed
@@ -284,21 +263,9 @@ public class NhapSachJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jtfDonGiaNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDonGiaNhapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDonGiaNhapActionPerformed
-
     private void jtfMaPhieuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMaPhieuNhapActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfMaPhieuNhapActionPerformed
-
-    private void jtfSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfSoLuongActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfSoLuongActionPerformed
-
-    private void jtfMaCTPhieuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMaCTPhieuNhapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfMaCTPhieuNhapActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
@@ -325,11 +292,11 @@ public class NhapSachJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jlbMsg;
     private javax.swing.JOptionPane jopThongBao;
     private javax.swing.JPanel jpnView;
-    private javax.swing.JTextField jtfDonGiaNhap;
-    private javax.swing.JTextField jtfMaCTPhieuNhap;
+    private javax.swing.JFormattedTextField jtfDonGiaNhap;
+    private javax.swing.JFormattedTextField jtfMaCTPhieuNhap;
     private javax.swing.JTextField jtfMaPhieuNhap;
-    private javax.swing.JTextField jtfMaSach;
+    private javax.swing.JFormattedTextField jtfMaSach;
     private javax.swing.JTextField jtfNgayNhap;
-    private javax.swing.JTextField jtfSoLuong;
+    private javax.swing.JFormattedTextField jtfSoLuong;
     // End of variables declaration//GEN-END:variables
 }

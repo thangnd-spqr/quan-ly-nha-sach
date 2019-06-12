@@ -20,7 +20,7 @@ public class CTPhieuNhapJFrame extends javax.swing.JFrame {
      */
     public CTPhieuNhapJFrame(List<CTPhieuNhap> listCTPN) {
         initComponents();
-        CTPhieuNhapController controller = new CTPhieuNhapController(jpnTable, btnDelete);
+        CTPhieuNhapController controller = new CTPhieuNhapController(jpnTable, btnDelete,jopThongBao);
         controller.setDataToTable(listCTPN);
     }
 
@@ -33,18 +33,22 @@ public class CTPhieuNhapJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jopThongBao = new javax.swing.JOptionPane();
         jpnView = new javax.swing.JPanel();
         btnDelete = new javax.swing.JButton();
         jpnTable = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jpnView.setBackground(new java.awt.Color(255, 255, 255));
 
         btnDelete.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnDelete.setText("Hủy");
-
-        jpnTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chi tiết phiếu nhập", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14))); // NOI18N
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnTableLayout = new javax.swing.GroupLayout(jpnTable);
         jpnTable.setLayout(jpnTableLayout);
@@ -54,7 +58,7 @@ public class CTPhieuNhapJFrame extends javax.swing.JFrame {
         );
         jpnTableLayout.setVerticalGroup(
             jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
+            .addGap(0, 469, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
@@ -94,6 +98,10 @@ public class CTPhieuNhapJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -101,6 +109,7 @@ public class CTPhieuNhapJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
+    private javax.swing.JOptionPane jopThongBao;
     private javax.swing.JPanel jpnTable;
     private javax.swing.JPanel jpnView;
     // End of variables declaration//GEN-END:variables

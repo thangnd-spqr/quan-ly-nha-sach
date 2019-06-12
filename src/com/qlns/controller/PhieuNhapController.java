@@ -73,7 +73,7 @@ public class PhieuNhapController {
     public void setMaPhieuNhap(){
         try {
             Connection conn = DBConnect.getConnection();
-            String sql = "SELECT ma_phieu_nhap FROM book_store.ct_pn";
+            String sql = "SELECT ma_phieu_nhap FROM book_store.phieu_nhap";
             PreparedStatement ps = conn.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             
@@ -81,6 +81,7 @@ public class PhieuNhapController {
             if (rs.next()) {
                 while(rs.next()) {
                     id = rs.getInt("ma_phieu_nhap");
+                    System.out.println("id ma phieu nhap: "+ id);
                 }
             }           
             jtfMaPhieuNhap.setText(Integer.toString(id+1));
@@ -170,18 +171,23 @@ public class PhieuNhapController {
             @Override
             public void mouseClicked(MouseEvent e) {
                                
-                if (jtfMaSach.getText().length() == 0) {
+                if (jtfMaSach.getText().trim().length() == 0 || jtfMaCTPhieuNhap.getText().trim().length() == 0 
+                        || jtfSoLuong.getText().trim().length() == 0 || jtfDonGiaNhap.getText().trim().length() == 0) {
                     jlbMsg.setText("Vui lòng nhập dữ liệu bắt buộc!");
-                } else {
+                } 
+                else if (jtfMaCTPhieuNhap.getText().trim().length() < 5) {
+                    jlbMsg.setText("Mã ct phiếu nhập có độ dài 5 ký tự");
+                }
+                else {
                     ctpn = new CTPhieuNhap();
                     
                     System.out.println("Button clicked");
-                    int n = (Integer.parseInt(jtfMaSach.getText()));
-                    ctpn.setMaCTPhieuNhap(Integer.parseInt(jtfMaCTPhieuNhap.getText()));
+                    int n = (Integer.parseInt(jtfMaSach.getText().trim()));
+                    ctpn.setMaCTPhieuNhap(Integer.parseInt(jtfMaCTPhieuNhap.getText().trim()));
                     ctpn.setMaSach(n);                   
-                    ctpn.setMaPhieuNhap(Integer.parseInt(jtfMaPhieuNhap.getText()));
-                    ctpn.setSoLuongNhap(Integer.parseInt(jtfSoLuong.getText()));
-                    ctpn.setDonGiaNhap(Long.parseLong(jtfDonGiaNhap.getText()));  
+                    ctpn.setMaPhieuNhap(Integer.parseInt(jtfMaPhieuNhap.getText().trim()));
+                    ctpn.setSoLuongNhap(Integer.parseInt(jtfSoLuong.getText().trim()));
+                    ctpn.setDonGiaNhap(Long.parseLong(jtfDonGiaNhap.getText().trim()));  
                     if( checkIfMaSachExist(table, n) == -1) {
                         objs[0] = ctpn.getMaPhieuNhap();
                         objs[1] = ctpn.getMaSach();

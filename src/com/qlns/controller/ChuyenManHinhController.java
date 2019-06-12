@@ -3,6 +3,7 @@ package com.qlns.controller;
 
 import com.qlns.bean.DanhMucBean;
 import com.qlns.view.NhapSachPanel;
+import com.qlns.view.QuanLySachPanel;
 import com.qlns.view.TrangChuPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -66,13 +67,13 @@ public class ChuyenManHinhController {
         public void mouseClicked(MouseEvent e) {
              switch (kind) {
                 case "TrangChu" :
-                    node = new TrangChuPanel();
+                    node = new QuanLySachPanel();
                     break;
                 case "NhapSach" :
                     node = new NhapSachPanel();
                     break;
                 default:
-                    node = new TrangChuPanel();
+                    node = new QuanLySachPanel();
                     break;
              }
              jpnRoot.removeAll();
@@ -80,7 +81,7 @@ public class ChuyenManHinhController {
              jpnRoot.add(node);
              jpnRoot.validate();
              jpnRoot.repaint();
-             setChangeBackgound(kind);
+             //setChangeBackgound(kind);
              
         }
 
